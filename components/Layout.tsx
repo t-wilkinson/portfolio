@@ -100,7 +100,7 @@ export const AnimateOnEnter = ({
     >
       <div {...props}>
         {trail.map((transition, i) => (
-          <animated.div key={i} style={transition}>
+          <animated.div key={i} style={transition as any}>
             {children[i]}
           </animated.div>
         ))}
