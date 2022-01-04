@@ -25,9 +25,9 @@ export const Header = () => {
         className: `bg-bg transition-all duration-100 ${scrollOffset < 50 ? '' : 'shadow-md'}`,
       }}
     >
-      <header className="flex text-light w-full py-4 items-center justify-between">
+      <header className="flex flex-col md:flex-row text-light w-full py-4 items-center justify-between">
         <AnimateOnEnter
-          className="flex-row items-center space-x-4"
+          className="flex-row items-center space-x-4 self-start"
           config={inView => ({
             to: {
               x: !inView ? -48 : 0,
@@ -43,7 +43,7 @@ export const Header = () => {
           </TextLink>
         </AnimateOnEnter>
         <AnimateOnEnter
-          className="flex-row items-center space-x-4"
+          className="flex-row items-center space-x-4 self-end"
           config={inView => ({
             to: {
               x: !inView ? 48 : 0,

@@ -24,7 +24,7 @@ export const Wrapper = ({
 
 export const ButtonContent = ({ children }) => (
   <div className="button bg-pri overflow-hidden px-[1em] py-[0.75em] w-max text-light">
-    <svg viewBox="0 0 180 60" className="" preserveAspectRatio="none">
+    <svg viewBox="0 0 180 60" className="button__svg" preserveAspectRatio="none">
       <polyline points="179,1 179,59 1,59 1,1 179,1" className="bg-line" />
       <polyline points="179,1 179,59 1,59 1,1 179,1" className="hl-line" />
     </svg>

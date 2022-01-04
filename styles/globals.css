@@ -8,10 +8,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-body {
-  overflow-x: hidden;
+  background: #1c2124;
+  overflow-x: none;
 }
 
 a {
@@ -69,7 +67,7 @@ article {
   outline: none;
 }
 
-.button svg {
+.button__svg {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -82,7 +80,7 @@ article {
   transition: 1s ease-in-out;
 }
 
-.button:hover svg {
+.button:hover .button__svg {
   stroke-dashoffset: -480;
 }
 

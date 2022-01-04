@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 
 import { useFields } from '../fields'
@@ -23,42 +24,11 @@ export const Contact = () => {
     message: {},
   })
 
-//   const refs = {
-//     shrink: useSpringRef(),
-//     progress: useSpringRef(),
-//     success: useSpringRef(),
-//   }
-
-//   const springs = useSprings(
-//     3,
-//     // fields.status !== 'submitting'
-//     //   ? []
-//     //   :
-//     [
-//       {
-//         ref: refs.shrink,
-//         to: {
-//           height: '0.5rem',
-//         },
-//       },
-//       {
-//         ref: refs.progress,
-//         to: {
-//           right: 1,
-//         },
-//       },
-//       {
-//         ref: refs.success,
-//         to: {
-//           right: 1,
-//         },
-//       },
-//     ]
-//   )
-//   useChain([refs.shrink, refs.progress, refs.success], [0, 1, 1])
-
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (fields.status === 'submitting' || fields.status === 'success') {
+      return
+    }
     fields.setStatus('submitting')
     sendMail(fields.clean())
       .then(() => fields.setStatus('success'))
@@ -73,7 +43,20 @@ export const Contact = () => {
           <Input field={fields.get('email')} />
           <TextArea field={fields.get('message')} />
           <div className="h-0" />
-          <Button className="w-fit">Let's talk</Button>
+          {fields.status === 'error' && (
+            <span className="text-light font-bold">Encountered unknown error</span>
+          )}
+          <Button>
+            <div className="w-20 items-center">
+              {fields.status === 'submitting' ? (
+                <Icon icon="loading" size={24} className="animate-spin h-5 w-3 relative z-10" />
+              ) : fields.status === 'success' ? (
+                <Icon icon="check" size={24} className="h-5 w-3 relative z-10" />
+              ) : (
+                "Let's talk"
+              )}
+            </div>
+          </Button>
         </A>
       </form>
       <div className="mx-auto pt-32 w-full" style={{ marginLeft: '10%' }}>
@@ -139,3 +122,36 @@ const TextArea = ({ field }) => {
   )
 }
 
+//   const refs = {
+//     shrink: useSpringRef(),
+//     progress: useSpringRef(),
+//     success: useSpringRef(),
+//   }
+
+//   const springs = useSprings(
+//     3,
+//     // fields.status !== 'submitting'
+//     //   ? []
+//     //   :
+//     [
+//       {
+//         ref: refs.shrink,
+//         to: {
+//           height: '0.5rem',
+//         },
+//       },
+//       {
+//         ref: refs.progress,
+//         to: {
+//           right: 1,
+//         },
+//       },
+//       {
+//         ref: refs.success,
+//         to: {
+//           right: 1,
+//         },
+//       },
+//     ]
+//   )
+//   useChain([refs.shrink, refs.progress, refs.success], [0, 1, 1])
