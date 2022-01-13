@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Wrapper, ButtonLink } from '../components'
-import { DonutAnimation, Projects, Contact } from '../components/Home'
+import { Animation, Projects, Contact } from '../components/Home'
 import { Section, Header, Footer, A } from '../components/Layout'
 
 const Home: NextPage = () => {
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
         <Header />
       </div>
       <main>
-        <DonutAnimation />
+        <Animation />
         <Hero />
         <MyWork />
         <AboutMe />

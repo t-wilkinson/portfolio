@@ -22,12 +22,18 @@ export const Header = () => {
   return (
     <Wrapper
       outer={{
-        className: `bg-bg transition-all duration-100 ${scrollOffset < 50 ? '' : 'shadow-md'}`,
+        className: `bg-bg transition-all duration-700 ease-out`,
+        style: scrollOffset < 25 ? {} : {
+          boxShadow: `
+            0px 1px 1px rgba(0,0,0,0.12),
+            0px 4px 4px rgba(0,0,0,0.12)
+          `
+        },
       }}
     >
-      <header className="flex flex-col md:flex-row text-light w-full py-4 items-center justify-between">
+      <header className="flex flex-col sm:flex-row text-light w-full py-4 items-center justify-between">
         <AnimateOnEnter
-          className="flex-row items-center space-x-4 self-start"
+          className="flex-row items-center space-x-4 self-start sm:self-auto"
           config={inView => ({
             to: {
               x: !inView ? -48 : 0,
@@ -43,7 +49,7 @@ export const Header = () => {
           </TextLink>
         </AnimateOnEnter>
         <AnimateOnEnter
-          className="flex-row items-center space-x-4 self-end"
+          className="flex-row items-center space-x-4 self-end sm:self-auto"
           config={inView => ({
             to: {
               x: !inView ? 48 : 0,

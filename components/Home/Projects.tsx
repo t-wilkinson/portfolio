@@ -30,13 +30,19 @@ const Project = ({
           project__img
           justify-self-stretch self-stretch relative
           theme overflow-hidden
-          transition duration-300 ease-in-out
+          transition-all duration-300 ease-in-out
         `}
+        style={{
+          boxShadow: `
+              0 1px 1px rgba(0,0,0,0.12),
+              0 4px 4px rgba(0,0,0,0.12),
+              0 16px 16px rgba(0,0,0,0.12)
+              `,
+        }}
       >
         <Link href={href}>
           <a target="_blank" className="absolute inset-0">
-            {/* <Image className="" src={mainimg} alt={alt} layout="fill" objectFit="cover" /> */}
-            <img className="" src={mainimg} alt={alt} />
+            <img className="object-cover h-full w-full" src={mainimg} alt={alt} />
           </a>
         </Link>
       </A>
@@ -51,10 +57,16 @@ const Project = ({
         </A>
       </div>
       <A
-        className={`project__content relative bg-sec p-4 theme shadow-lg shadow-bg/50 transition-all duration-300 ease-in-out z-10
+        className={`project__content relative from-pri to-sec p-4 theme transition-all duration-300 ease-in-out z-10
+          ${direction === 'right' ? 'bg-gradient-to-bl' : 'bg-gradient-to-br'}
             `}
         style={{
           gridArea: 'content',
+          boxShadow: `
+           0 1px 1px rgba(0,0,0,0.12),
+              0 4px 4px rgba(0,0,0,0.12),
+              0 1px 1px rgba(0,0,0,0.12),
+              `,
         }}
       >
         {children}
