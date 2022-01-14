@@ -84,7 +84,7 @@ export const Contact = () => {
             <Link href={href} key={text}>
               <a className="inline" target="_blank">
                 <span className="flex flex-row items-center space-x-2">
-                  <Icon icon={icon} className="" /> <span className="link">{text}</span>
+                  <Icon icon={icon} /> <span className="link">{text}</span>
                 </span>
               </a>
             </Link>
@@ -98,9 +98,9 @@ export const Contact = () => {
 const Input = ({ field }) => {
   return (
     <label className="flex flex-col">
-      <span className="font-bold text-lg">{field.label}</span>
+      <span className="font-bold text-xl">{field.label}</span>
       <input
-        className="p-2 bg-mono-700 mt-[0.75em]"
+        className="p-2 bg-mono-700 mt-[0.75em] rounded-md"
         value={field.value}
         onChange={e => field.setValue(e.target.value)}
       />
@@ -111,9 +111,9 @@ const Input = ({ field }) => {
 const TextArea = ({ field }) => {
   return (
     <label className="flex flex-col">
-      <span className="font-bold">{field.label}</span>
+      <span className="font-bold text-xl">{field.label}</span>
       <textarea
-        className="p-2 bg-mono-700 mt-2"
+        className="p-2 bg-mono-700 mt-2 rounded-md"
         rows={5}
         value={field.value}
         onChange={e => field.setValue(e.target.value)}

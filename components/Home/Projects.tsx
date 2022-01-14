@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 
 import { A } from '../Layout'
 
@@ -8,22 +7,19 @@ const PortfolioVideo = ({ src }) => {
   return <video key={src} src={'/assets/sites/' + src} autoPlay muted loop className="video" />
 }
 
-// TODO: stagger `li` and title/subtitle animations?
 const Project = ({
   direction,
   title,
   subtitle,
   children,
   mainimg,
-  views,
   alt,
   href,
-  themeColor,
 }) => {
   const [hover, setHover] = React.useState(false)
   return (
     <article className={`project ${direction} ${hover ? 'hover' : ''}`}>
-      <A
+      <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         className={`
@@ -31,13 +27,13 @@ const Project = ({
           justify-self-stretch self-stretch relative
           theme overflow-hidden
           transition-all duration-300 ease-in-out
-        `}
+          `}
         style={{
           boxShadow: `
-              0 1px 1px rgba(0,0,0,0.12),
-              0 4px 4px rgba(0,0,0,0.12),
-              0 16px 16px rgba(0,0,0,0.12)
-              `,
+          0 1px 1px rgba(0,0,0,0.12),
+          0 4px 4px rgba(0,0,0,0.12),
+          0 16px 16px rgba(0,0,0,0.12)
+          `,
         }}
       >
         <Link href={href}>
@@ -45,7 +41,7 @@ const Project = ({
             <img className="object-cover h-full w-full" src={mainimg} alt={alt} />
           </a>
         </Link>
-      </A>
+      </div>
       <div
         style={{ gridArea: 'title' }}
         className={`relative duration-300 ease-in-out project__title

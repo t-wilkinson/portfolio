@@ -90,7 +90,10 @@ export const Animation = () => {
   const scale = to([parallax.scale], scale => scale) as any
 
   return (
-    <div className="fixed inset-0">
+    <div className="fixed inset-0"
+      style={{
+      }}
+    >
       <Canvas>
         <CameraControls />
         <animated.group position={position} scale={scale}>

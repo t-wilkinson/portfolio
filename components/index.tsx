@@ -22,38 +22,51 @@ export const Wrapper = ({
   )
 }
 
+const around = x => (x === 1 ? x + 3 : x - 3)
+const points = [
+  [1, 1],
+  [179, 1],
+  [179, 59],
+  [1, 59],
+  [1, 1],
+]
+  .map(([x, y], i) =>
+    i % 2 === 0 ? `${x},${around(y)} ${around(x)},${y}` : `${around(x)},${y} ${x},${around(y)}`
+  )
+  .join(' ')
+
 export const ButtonContent = ({ children }) => (
-  <div className="button bg-pri overflow-hidden px-[1em] py-[0.75em] w-max text-light">
+  <div className="button bg-pri overflow-hidden px-[1em] py-[0.75em] w-max text-light rounded-md">
     <svg viewBox="0 0 180 60" className="button__svg" preserveAspectRatio="none">
-      <polyline points="179,1 179,59 1,59 1,1 179,1" className="bg-line" />
-      <polyline points="179,1 179,59 1,59 1,1 179,1" className="hl-line" />
+      <polyline points={points} className="bg-line" />
+      <polyline points={points} className="bg-line" />
     </svg>
     {children}
   </div>
 )
 
-export const ButtonLink = ({ children, href, className = '' }) => {
+export const Button = ({ children, className = '', ...props }) => {
+  return (
+    <button {...props} className={`font-bold w-max ${className}`}>
+      <ButtonContent>{children}</ButtonContent>
+    </button>
+  )
+}
+
+export const ButtonLink = ({ active=false, children, href, className = '' }) => {
   return (
     <Link href={href}>
-      <a className={`${className}`}>
+      <a className={`${className} ${active ? 'font-bold' : ''}`}>
         <ButtonContent>{children}</ButtonContent>
       </a>
     </Link>
   )
 }
 
-export const Button = ({ children, className = '', ...props }) => {
-  return (
-    <button {...props} className={`font-bold ${className}`}>
-      <ButtonContent>{children}</ButtonContent>
-    </button>
-  )
-}
-
-export const TextLink = ({ children, className = '', href, ...props }) => {
+export const TextLink = ({ active=false, children, className = '', href, ...props }) => {
   return (
     <Link href={href}>
-      <a className={`link ${className}`} {...props}>
+      <a className={`link ${className} ${active ? 'font-bold' : ''}`} {...props}>
         {children}
       </a>
     </Link>

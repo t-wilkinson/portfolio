@@ -7,6 +7,26 @@ import { Animation, Projects, Contact } from '../components/Home'
 import { Section, Header, Footer, A } from '../components/Layout'
 
 const Home: NextPage = () => {
+  const [activeSection, setActiveSection] = React.useState('home')
+
+  React.useEffect(() => {
+    const sections = Array.from(document.querySelectorAll('section'))
+    const onScroll = () => {
+      const buffer = window.innerHeight / 2
+      const section = sections.find(section => {
+        const rect = section.getBoundingClientRect()
+        return rect.top >= 0 && rect.top < buffer && rect.bottom > 0
+      })
+      if (!section) {
+        return
+      }
+      const id = section.previousElementSibling?.getAttribute('id')
+      setActiveSection(id)
+    }
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <div className="bg-bg w-full text-light relative overflow-x-hidden">
       <Head>
@@ -16,10 +36,10 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="fixed top-0 w-full z-20">
-        <Header />
+        <Header activeSection={activeSection} />
       </div>
-      <main>
         <Animation />
+      <main className="relative">
         <Hero />
         <MyWork />
         <AboutMe />
@@ -33,7 +53,8 @@ const Home: NextPage = () => {
 const Hero = () => {
   return (
     <Wrapper>
-      <section id="home" className="h-screen justify-center max-w-screen-sm relative">
+      <div id="home" />
+      <section className="h-screen justify-center max-w-screen-sm relative">
         <A className="space-y-8">
           <h1 className="font-bold text-[6rem] text-light leading-tight">
             I solve your digital problems
