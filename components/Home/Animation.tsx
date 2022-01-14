@@ -1,12 +1,23 @@
 import React from 'react'
-import { useSpring, animated as animatedSpring, to, useSpringRef } from 'react-spring'
+import { useSpring, to } from 'react-spring'
 import { useTrail, config, animated } from '@react-spring/three'
-import { Canvas, useThree, useFrame, extend, useLoader } from '@react-three/fiber'
+import { Canvas, useThree, useFrame, extend } from '@react-three/fiber'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import Donut from './Donut'
 import Particles from './Particles'
 // import { TextureLoader } from 'three/src/loaders/TextureLoader'
+
+const palette = {
+  pri: '#5037FF', // '#2F12FF',
+  sec: '#473D8F',
+  bg: '#1C2124',
+  light: '#EEECFF',
+  mono: {
+    default: '#',
+    '700': '#3A364E',
+  },
+}
 
 extend({ OrbitControls })
 
@@ -32,6 +43,8 @@ const CameraControls = () => {
   // return <orbitControls ref={controls} args={[camera, domElement]} enablePan={true} />
 }
 
+const AnimatedParticles = animated(Particles)
+
 export const Animation = () => {
   const donuts = [1, 2, 3, 4, 5]
   const trail = useTrail(donuts.length, {
@@ -49,6 +62,7 @@ export const Animation = () => {
       scale: 1,
       mx: 0,
       my: 0,
+      scroll: 0,
     },
   }))
 
@@ -60,12 +74,13 @@ export const Animation = () => {
           x: Math.sin(scrollY + Math.PI) * 2,
           y: scrollY * 4.2,
           scale: Math.sin(scrollY * 5) + 1,
+          scroll: scrollY,
         },
         config: config.default,
       })
     }
 
-    const onMouseMove = e => {
+    const onMouseMove = (e: MouseEvent) => {
       api.start({
         to: {
           mx: e.clientX / window.innerWidth - 0.5,
@@ -82,32 +97,38 @@ export const Animation = () => {
       window.removeEventListener('mousemove', onMouseMove)
     }
   }, [])
+
   const position = to([parallax.x, parallax.y, parallax.mx, parallax.my], (x, y, mx, my) => [
     x + -mx * 3 + 2,
     y + my * 3,
     0,
   ]) as any
   const scale = to([parallax.scale], scale => scale) as any
+  const scroll = to([parallax.scroll], scroll => {
+    const scale = (1 / Math.max(1, (scroll * 8) ** 2)) * 1.2
+    if (scale < 0.05) {
+      return 0
+    } else {
+      return scale
+    }
+  }) as any
 
   return (
-    <div className="fixed inset-0"
-      style={{
-      }}
-    >
+    <div className="fixed inset-0">
       <Canvas>
         <CameraControls />
         <animated.group position={position} scale={scale}>
           <pointLight position={[-3, 1, 0]} />
+          {/* <pointLight position={[1, 1, 0]} color={palette.pri}/> */}
           <group rotation={[0.8, 0, 0.4]} position={[0, 0, 0]} scale={0.01}>
             {trail.map((props, i) => (
               <Donut key={i} size={i + 1} {...props} />
             ))}
           </group>
         </animated.group>
-        {/* <group rotation={[-1.3, 0, 0]}> */}
-        {/*   <axesHelper /> */}
-        {/*   <Particles /> */}
-        {/* </group> */}
+        <group position={[0, -100, 0]} scale={0.3}>
+          <AnimatedParticles size={50} scale={scroll} />
+        </group>
       </Canvas>
     </div>
   )

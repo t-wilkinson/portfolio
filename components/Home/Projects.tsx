@@ -53,9 +53,10 @@ const Project = ({
         </A>
       </div>
       <A
-        className={`project__content relative from-pri to-sec p-4 theme transition-all duration-300 ease-in-out z-10
-          ${direction === 'right' ? 'bg-gradient-to-bl' : 'bg-gradient-to-br'}
-            `}
+        className={`project__content relative bg-pri p-4 theme transition-all duration-300 ease-in-out z-10 `}
+        // className={`project__content relative from-pri to-sec p-4 theme transition-all duration-300 ease-in-out z-10
+        //   ${direction === 'right' ? 'bg-gradient-to-bl' : 'bg-gradient-to-br'}
+        //     `}
         style={{
           gridArea: 'content',
           boxShadow: `
