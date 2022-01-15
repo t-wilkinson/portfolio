@@ -51,6 +51,7 @@ export const Animation = () => {
     from: { translate: 0, color: 0 },
     to: { translate: 1, color: 1 },
   })
+  let xxx = React.useRef(1.4)
 
   // Probably don't need react-spring for this (its overkill)
   const [parallax, api] = useSpring(() => ({
@@ -77,8 +78,9 @@ export const Animation = () => {
         config: config.default,
       })
 
-      const scale = Math.exp(-scrollY * 8) * 1.4
-      xxx.current = scale < 0.02 ? 0 : scale
+      // const scale = Math.exp(-scrollY * 8) * 1.4
+      const scale = 2 / (scrollY + 1) - 1
+      xxx.current = scale < 0.01 ? 0 : scale
     }
 
     const onMouseMove = (e: MouseEvent) => {
@@ -105,7 +107,7 @@ export const Animation = () => {
     0,
   ]) as any
   const scale = to([parallax.scale], scale => scale) as any
-  let xxx = React.useRef(null)
+
   // to([parallax.scroll], scroll => {
   //   const scale = Math.exp(-scroll) * 2
   //   // const scale = - Math.log(scroll + 1)
@@ -128,7 +130,7 @@ export const Animation = () => {
           </group>
         </animated.group>
         <group position={[0, -100, 0]} scale={0.3}>
-          <Particles size={30} xxx={xxx}/>
+          <Particles size={50} xxx={xxx}/>
         </group>
       </Canvas>
     </div>

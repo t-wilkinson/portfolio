@@ -71,7 +71,7 @@ const Hero = () => {
 
 const MyWork = () => {
   return (
-    <Section label="My work" animate>
+    <Section label="My work" className="bg-bg" animate>
       <div className="my-8 space-y-32">
         <Projects />
       </div>

@@ -93,7 +93,7 @@ export default ({ xxx, size, }) => {
     particles.geometry.attributes.position.needsUpdate = true
     particles.geometry.attributes.scale.needsUpdate = true
 
-    count += 0.1
+    count += 0.05
   })
 
   return <points geometry={particles.geometry} material={particles.material} />

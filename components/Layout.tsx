@@ -127,9 +127,9 @@ export const AnimateOnEnter = ({
 
 export const A = AnimateOnEnter
 
-export const Section = ({ label, children = null as React.ReactNode, animate = false }) => {
+export const Section = ({ className='', label, children = null as React.ReactNode, animate = false }) => {
   return (
-    <Wrapper>
+    <Wrapper outer={{className}}>
       <div
         id={label.toLowerCase().replace(' ', '-')}
         className="relative"
