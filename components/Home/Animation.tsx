@@ -43,8 +43,6 @@ const CameraControls = () => {
   // return <orbitControls ref={controls} args={[camera, domElement]} enablePan={true} />
 }
 
-const AnimatedParticles = animated(Particles)
-
 export const Animation = () => {
   const donuts = [1, 2, 3, 4, 5]
   const trail = useTrail(donuts.length, {
@@ -78,6 +76,9 @@ export const Animation = () => {
         },
         config: config.default,
       })
+
+      const scale = Math.exp(-scrollY * 8) * 1.4
+      xxx.current = scale < 0.02 ? 0 : scale
     }
 
     const onMouseMove = (e: MouseEvent) => {
@@ -104,14 +105,14 @@ export const Animation = () => {
     0,
   ]) as any
   const scale = to([parallax.scale], scale => scale) as any
-  const scroll = to([parallax.scroll], scroll => {
-    const scale = (1 / Math.max(1, (scroll * 8) ** 2)) * 1.2
-    if (scale < 0.05) {
-      return 0
-    } else {
-      return scale
-    }
-  }) as any
+  let xxx = React.useRef(null)
+  // to([parallax.scroll], scroll => {
+  //   const scale = Math.exp(-scroll) * 2
+  //   // const scale = - Math.log(scroll + 1)
+  //   // TODO: Is there a better way to do this?
+  //   console.log(scale)
+  //   xxx.current = scale < 0.05 ? 0 : scale
+  // }) as any
 
   return (
     <div className="fixed inset-0">
@@ -127,7 +128,7 @@ export const Animation = () => {
           </group>
         </animated.group>
         <group position={[0, -100, 0]} scale={0.3}>
-          <AnimatedParticles size={50} scale={scroll} />
+          <Particles size={30} xxx={xxx}/>
         </group>
       </Canvas>
     </div>

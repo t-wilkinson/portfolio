@@ -85,11 +85,11 @@ const AboutMe = () => {
       <div className="space-y-2">
         <A>
           <p>
-            My name is Trey Wilkinson. I am a freelance software engineer who enjoys helping small
+            My name is Trey Wilkinson. I'm an independent freelance developer who enjoys helping small
             business navigate the digital age. I excel at creating dynamic, responsive, and
             functional websites that help your business thrive.
           </p>
-          <strong>I can help you with:</strong>
+          <strong className="text-xl mt-8">I can help you with:</strong>
         </A>
         <ul className="list-disc ml-8">
           <A>

@@ -34,11 +34,11 @@ const initParticles = (size: number) => {
   // Positions and Scales
   let i = 0
   let j = 0
-  for (let ix = 0; ix < AMOUNTX; ix++) {
-    for (let iy = 0; iy < AMOUNTY; iy++) {
-      positions[i] = ix * SEPARATION - (AMOUNTX * SEPARATION) / 2 // x
+  for (let ix = 0; ix < size; ix++) {
+    for (let iy = 0; iy < size; iy++) {
+      positions[i] = ix * SEPARATION - (size * SEPARATION) / 2 // x
       positions[i + 1] = 0 // y
-      positions[i + 2] = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2 // z
+      positions[i + 2] = iy * SEPARATION - (size * SEPARATION) / 2 // z
 
       scales[j] = 1
 
@@ -64,14 +64,14 @@ const initParticles = (size: number) => {
   return { geometry, material }
 }
 
-export default ({ size, scale }) => {
+export default ({ xxx, size, }) => {
   const particles = initParticles(size)
 
   useFrame(() => {
+    const scale = xxx.current
     const positions = particles.geometry.attributes.position.array as Array<number>
     const scales = particles.geometry.attributes.scale.array as Array<number>
 
-    // const scale = 0.4
     let i = 0
     let j = 0
 
