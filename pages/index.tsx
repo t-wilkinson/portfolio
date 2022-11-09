@@ -54,13 +54,13 @@ const Hero = () => {
   return (
     <Wrapper>
       <div id="home" />
-      <section className="h-screen justify-center max-w-screen-sm relative">
+      <section className="h-screen justify-center w-2/3 md:max-w-screen-sm relative">
         <A className="space-y-8">
-          <h1 className="font-bold text-6xl text-light leading-tight">
+          <h1 className="font-bold text-4xl md:text-6xl text-light leading-tight">
             I solve your digital problems
           </h1>
           <div />
-          <ButtonLink href="#my-work" className="text-2xl font-bold">
+          <ButtonLink href="#my-work" className="text-xl md:text-2xl font-bold">
             My work
           </ButtonLink>
         </A>
