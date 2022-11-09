@@ -75,7 +75,7 @@ export const TextLink = ({ active=false, children, className = '', href, ...prop
 
 export const Heading = ({ children }) => {
   return (
-    <h3 className="text-light text-6xl font-bold mb-8">
+    <h3 className="text-light text-5xl font-bold mb-8">
       <A>
         <div className="bg-pri w-[1.5em] theme h-[0.25em] mb-1" />
         {children}
