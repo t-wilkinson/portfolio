@@ -4,7 +4,7 @@ import { useTrail, config, animated } from '@react-spring/three'
 import { Canvas, useThree, useFrame, extend } from '@react-three/fiber'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
-import Donut from './Donut'
+// import Donut from './Donut'
 import Particles from './Particles'
 // import { TextureLoader } from 'three/src/loaders/TextureLoader'
 
@@ -120,15 +120,15 @@ export const Animation = () => {
     <div className="fixed inset-0">
       <Canvas>
         <CameraControls />
-        <animated.group position={position} scale={scale}>
-          <pointLight position={[-3, 1, 0]} />
-          {/* <pointLight position={[1, 1, 0]} color={palette.pri}/> */}
-          <group rotation={[0.8, 0, 0.4]} position={[0, 0, 0]} scale={0.01}>
-            {trail.map((props, i) => (
-              <Donut key={i} size={i + 1} {...props} />
-            ))}
-          </group>
-        </animated.group>
+        {/* <animated.group position={position} scale={scale}> */}
+        {/*   <pointLight position={[-3, 1, 0]} /> */}
+        {/*   {/1* <pointLight position={[1, 1, 0]} color={palette.pri}/> *1/} */}
+        {/*   <group rotation={[0.8, 0, 0.4]} position={[0, 0, 0]} scale={0.01}> */}
+        {/*     {trail.map((props, i) => ( */}
+        {/*       <Donut key={i} size={i + 1} {...props} /> */}
+        {/*     ))} */}
+        {/*   </group> */}
+        {/* </animated.group> */}
         <group position={[0, -100, 0]} scale={0.3}>
           <Particles size={50} xxx={xxx}/>
         </group>
